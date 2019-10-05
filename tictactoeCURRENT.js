@@ -59,10 +59,9 @@ function restart_game() {
     $("#id9").html("")
 
     //change the color of green in the winning area, WIP still need to fix the play again
-    $("#board").each(function () {
-        console.log('1')
-        if ($(this).css('color') != "rgb(60, 66, 69)") {
-            $(this).css('color') == "rgb(60, 66, 69)";
+    $("#board").children('.col').each(function () {      
+        if ($(this).css('background-color') == "rgb(0, 128, 0)") { //green
+            $(this).css('background-color',"rgb(113, 145, 146)") // change to this color
         }
     })
 
@@ -119,12 +118,12 @@ function game_play(e) {
         }
 
         if (winning(player1) != false) {
-            $('#inform_user').html(`<h1>First player is winning!</h1>`);
+            $('#inform_user').html(`<h1>You lost bitch!</h1>`);
             body.removeEventListener("click", game_play); // remove function
         }
 
         if (winning(player2) != false) {
-            $('#inform_user').html(`<h1>Second player is winning!</h1>`);
+            $('#inform_user').html(`<h1>Congratulation you win!</h1>`);
             body.removeEventListener("click", game_play); // remove function
         }
 
