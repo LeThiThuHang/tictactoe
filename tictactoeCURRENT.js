@@ -24,6 +24,14 @@ $("#play_again_button").click(function () {
 
 })
 
+//play with computer code 
+$("#play_with_computer").click(function () {
+    $("#setting_game").hide();
+    $("#tic-tac-toe-board").show();
+    body.addEventListener('click', play_with_computer);
+})
+
+
 
 
 let player1 = [];
@@ -40,11 +48,21 @@ let winningCombination = [
     [1, 5, 9],
     [3, 5, 7],
 ]
-
 let body = document.querySelector('body');
 let position = '';
 let turn = 0;
 
+
+//ading variables for play with computer
+let computer = [];
+let game_end = 0;
+let result;
+let move = 10; // store result
+let player1Sign = 'X';
+let computerSign = 'O'
+
+
+//PLAY BY YOURSELF SECTION
 //restart the game
 function restart_game() {
     //clear the board as well
@@ -59,9 +77,9 @@ function restart_game() {
     $("#id9").html("")
 
     //change the color of green in the winning area, WIP still need to fix the play again
-    $("#board").children('.col').each(function () {      
+    $("#board").children('.col').each(function () {
         if ($(this).css('background-color') == "rgb(0, 128, 0)") { //green
-            $(this).css('background-color',"rgb(113, 145, 146)") // change to this color
+            $(this).css('background-color', "rgb(113, 145, 146)") // change to this color
         }
     })
 
@@ -71,6 +89,13 @@ function restart_game() {
     position = '';
     turn = 0;
     $('#inform_user').html(`<h1>Start the game. You are the first player!</h1>`);
+
+    //variables for play with computer
+    computer = [];
+    game_end = 0;
+    result;
+    move = 10; // store result
+
 }
 
 
@@ -86,11 +111,10 @@ function marker(x) {
 }
 
 function game_play(e) {
-    console.log("game_play")
+
     position = e.target.id;
     let index = Number(position[position.length - 1]) // get last digit of an ID, string => number
-    console.log(index)
-    console.log(!isNaN(index))
+
 
     if (!isNaN(index)) {
 
@@ -109,7 +133,6 @@ function game_play(e) {
         } else { // even number 1st player
             //check if the player 2 is winning        
             if (!players.includes(index)) {
-                console.log(document.getElementById(`id${index}`))
                 document.getElementById(`id${index}`).innerHTML = marker(turn);
                 player2.push(index);
                 players.push(index);
@@ -139,7 +162,7 @@ function game_play(e) {
 
 //check for winning
 function winning(array) {
-    console.log('winning function runs')
+
     let result; // store result
     for (let i = 0; i < winningCombination.length; i++) { // to get the element in winning array
         let check = array.filter(item => winningCombination[i].includes(item));
@@ -149,7 +172,6 @@ function winning(array) {
             for (i = 0; i <= 2; i++) {
                 document.getElementById(`id${check[i]}`).style.backgroundColor = 'green';
             };
-            result = true
             return
         } else {
             result = false;
@@ -170,6 +192,144 @@ function tie(array1, array2) {
     }
     return tie;
 }
+
+//PLAY WITH COMPUTER SECTION
+function play_with_computer(e) {
+    position = e.target.id; // use this to trigger the following events when the mouse click on anything under body
+
+    let index = Number(position[position.length - 1]) // get last digit of an ID, string => number
+
+    if (game_end == 0) {
+        if (turn % 2 == 0) {  // both player 1 and computer in one move
+            if (!players.includes(index)) {
+
+                let sign = document.getElementById(`id${index}`);
+                sign.innerHTML = player1Sign;
+                player1.push(index);
+                players.push(index);
+                turn = turn + 2;
+
+
+                if (players.length < 9) {
+                    computerMove();
+
+                }
+
+                checkWinning(); // if game end = 1; stop the game
+
+                
+            } else {
+                alert('Choose some place else');
+            }
+        }
+
+    } else {
+        body.removeEventListener('click', play_with_computer)
+    }
+}
+
+//check for winning both
+
+function checkWinning() {
+    if (winning_play_with_computer(player1)) {    
+        $('#inform_user').html(`<h1>Congratulation you win bae!</h1>`);
+    } else if (winning_play_with_computer(computer)) {
+       
+        $('#inform_user').html(`<h1>You lost bitch blab!</h1>`);
+    } else if (tie_play_with_computer(player1, computer)) {
+        
+        $('#inform_user').html(`<h1>You are tied!</h1>`);
+    }
+
+    if (winning_play_with_computer(player1) == true || winning_play_with_computer(computer) == true || players.length == 9) {
+        return game_end = 1;
+    } else {
+        return game_end = 0;
+    }
+}
+
+function winning_play_with_computer(array) {
+    for (let i = 0; i < winningCombination.length; i++) { // to get the element in winning array
+        let check = array.filter(item => winningCombination[i].includes(item))
+
+        if (check.length == 3) {
+            for (i = 0; i <= 2; i++) {
+                document.getElementById(`id${check[i]}`).style.backgroundColor = 'green';
+            };
+            return result = true;
+        } else {
+            result = false;
+        }
+    }
+    return result
+}
+
+//check for tie
+function tie_play_with_computer(array1, array2) {
+
+    let tie;
+    if (players.length == 9) { // all moves done
+        if (winning_play_with_computer(array1) == false) {
+            if (winning_play_with_computer(array2) == false) {
+                tie = true;
+            }
+        }
+    }
+    return tie
+}
+
+
+function random() {
+    return Math.ceil(Math.random() * 9);
+}
+
+//fill in function
+function fillIn(x) {
+    document.getElementById(`id${x}`).innerHTML = computerSign;
+    computer.push(x);
+    players.push(x);
+}
+
+
+function computerMove() {
+    //check winning combination for the computer
+    let winningMoveComputer = nextMove(computer) //=> should return the position to fill in block
+    let winningMoveCompetitor = nextMove(player1)
+
+    if (winningMoveComputer < 10 && !computer.includes(winningMoveComputer)) {
+        fillIn(winningMoveComputer)
+
+    } else if (winningMoveCompetitor < 10 && !computer.includes(winningMoveCompetitor)) {
+        fillIn(winningMoveCompetitor)
+
+    } else {
+        //if no winning combination found, do the move based on random
+        let randomNumber = random();
+
+        while (players.includes(randomNumber)) {
+            randomNumber = random();
+        }
+        fillIn(randomNumber);
+    }
+}
+
+//check for next move of computer 
+//check next move based on winning combination
+function nextMove(array) {
+    for (let i = 0; i < winningCombination.length; i++) { // to get the element in winning array
+
+        let thirdWinningPosition = winningCombination[i].filter(item => !array.includes(item));
+
+        if (thirdWinningPosition.length == 1) {
+            if (!players.includes(thirdWinningPosition[0])) {
+                move = thirdWinningPosition[0];
+                break
+            }
+        }
+    }
+    return move;
+}
+
 
 
 
