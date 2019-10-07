@@ -88,7 +88,7 @@ function restart_game() {
     players = [];
     position = '';
     turn = 0;
-    $('#inform_user').html(`<h1>Start the game. You are the first player!</h1>`);
+    $('#inform_user').html(`<p>Start the game. You are the first player!</p>`);
 
     //variables for play with computer
     computer = [];
@@ -141,18 +141,18 @@ function game_play(e) {
         }
 
         if (winning(player1) != false) {
-            $('#inform_user').html(`<h1>You lost bitch!</h1>`);
+            $('#inform_user').html(`<p>You lost bitch!</p>`);
             body.removeEventListener("click", game_play); // remove function
         }
 
         if (winning(player2) != false) {
-            $('#inform_user').html(`<h1>Congratulation you win!</h1>`);
+            $('#inform_user').html(`<p>Congratulation you win!</p>`);
             body.removeEventListener("click", game_play); // remove function
         }
 
         if (tie(player1, player2)) {
             /* alert('you are tied'); */
-            $('#inform_user').html(`<h1>You are tied!</h1>`);
+            $('#inform_user').html(`<p>You are tied!</p>`);
             /* document.body.innerHTML = `<p>End the game</p>`; */
             body.removeEventListener("click", game_play); // remove function
         }

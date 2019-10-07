@@ -67,8 +67,6 @@
         color:white;
         font-size:2em;
         margin-top:1em;
-    
-    
     }
     
     /* styling for tictactoe board */
@@ -95,7 +93,6 @@
 @media (max-width : 414px) {
 
     /* Styles */
-
     #header {
         display: inline-block;
         font-family: 'Monoton', cursive;
@@ -125,5 +122,68 @@
         font-size: 7vw;
         border: none;
         
+    }
+
+    #start_button {
+        background-color: #719192;
+        height:80px;
+        width: 20%;
+        margin-top: 1em;
+        border-radius: 15px;
+        font-family:'Finger Paint', cursive;
+        font-size: 2rem;
+        border: none;
+    }
+
+    #back_button, #play_again_button {
+        background-color: #719192;
+        height:5vh;
+        width: 20vw;
+        margin-top: 2rem;
+        border-radius: 15px;
+        font-family:'Finger Paint', cursive;
+        font-size: 1rem;
+        border: none;
+    }
+
+    #play_again_button {
+        width: 30vw;
+    }
+    
+    .play_button:hover, #start_button:hover, #back_button:hover, #play_again_button:hover {
+        background-color: #5F6769;
+        color:white;
+    }
+
+    #tic-tac-toe-board {
+        height: 90vh;
+        width: 80vw;
+    }
+    
+    #board {
+        background-color:red;
+        height: 60vh;
+        width: 80vw;   
+    }
+
+    .col {
+        height: 20vh;   
+        background-color: #719192; 
+        font-size: 5rem;
+        color: #3c4245;
+        text-align: center;
+        font-family:'Finger Paint', cursive;
+    }
+    
+    .col:hover {
+        background-color: lightblue;
+    }
+    
+    #inform_user {
+        font-family:'Finger Paint', cursive;
+        color:white;
+        font-size:15px;
+        margin-top:2rem;
+        margin-bottom:2rem;
     }
 }
