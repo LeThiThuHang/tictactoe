@@ -199,45 +199,51 @@ function play_with_computer(e) {
 
     let index = Number(position[position.length - 1]) // get last digit of an ID, string => number
 
-    if (game_end == 0) {
-        if (turn % 2 == 0) {  // both player 1 and computer in one move
-            if (!players.includes(index)) {
+    if (!isNaN(index)) {
 
-                let sign = document.getElementById(`id${index}`);
-                sign.innerHTML = player1Sign;
-                player1.push(index);
-                players.push(index);
-                turn = turn + 2;
+        if (game_end == 0) {
+            if (turn % 2 == 0) {  // both player 1 and computer in one move
+                if (!players.includes(index)) {
+
+                    let sign = document.getElementById(`id${index}`);
+                    sign.innerHTML = player1Sign;
+                    player1.push(index);
+                    players.push(index);
+                    turn = turn + 2;
 
 
-                if (players.length < 9) {
-                    computerMove();
+                    if (players.length < 9) {
+                        computerMove();
 
+                    }
+
+                    checkWinning(); // if game end = 1; stop the game
+
+
+                } else {
+                    alert('Choose some place else');
                 }
-
-                checkWinning(); // if game end = 1; stop the game
-
-                
-            } else {
-                alert('Choose some place else');
             }
-        }
 
-    } else {
-        body.removeEventListener('click', play_with_computer)
+        } else {
+            body.removeEventListener('click', play_with_computer)
+        }
     }
+
+
+
 }
 
 //check for winning both
 
 function checkWinning() {
-    if (winning_play_with_computer(player1)) {    
+    if (winning_play_with_computer(player1)) {
         $('#inform_user').html(`<h1>Congratulation you win bae!</h1>`);
     } else if (winning_play_with_computer(computer)) {
-       
+
         $('#inform_user').html(`<h1>You lost bitch blab!</h1>`);
     } else if (tie_play_with_computer(player1, computer)) {
-        
+
         $('#inform_user').html(`<h1>You are tied!</h1>`);
     }
 

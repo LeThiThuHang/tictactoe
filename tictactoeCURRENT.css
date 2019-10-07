@@ -4,11 +4,12 @@ body {
 
 .play_button {
     background-color:#719192;
-    height:160px;
+    height:50%;
     width: 40%;
     border-radius: 15px;
     font-family:'Finger Paint', cursive;
-    font-size: 2rem;
+    /* font-size: 2rem; */
+    font-size: 4vw;
     border: none;
     
 }
