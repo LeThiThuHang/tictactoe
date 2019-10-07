@@ -8,6 +8,7 @@ $("#back_button").click(function () {
 
     $("#tic-tac-toe-board").hide();
     $("#setting_game").show();
+    restart_game();
 })
 
 
