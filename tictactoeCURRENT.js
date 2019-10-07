@@ -142,12 +142,12 @@ function game_play(e) {
         }
 
         if (winning(player1) != false) {
-            $('#inform_user').html(`<p>You lost bitch!</p>`);
+            $('#inform_user').html(`<p>It's ok to lose :)</p>`);
             body.removeEventListener("click", game_play); // remove function
         }
 
         if (winning(player2) != false) {
-            $('#inform_user').html(`<p>Congratulation you win!</p>`);
+            $('#inform_user').html(`<p>Congratulation you win babe :3 !</p>`);
             body.removeEventListener("click", game_play); // remove function
         }
 
@@ -239,10 +239,10 @@ function play_with_computer(e) {
 
 function checkWinning() {
     if (winning_play_with_computer(player1)) {
-        $('#inform_user').html(`<h1>Congratulation you win bae!</h1>`);
+        $('#inform_user').html(`<h1>Congratulation you win babe :3 !</h1>`);
     } else if (winning_play_with_computer(computer)) {
 
-        $('#inform_user').html(`<h1>You lost bitch blab!</h1>`);
+        $('#inform_user').html(`<h1>It's ok to lose :)</h1>`);
     } else if (tie_play_with_computer(player1, computer)) {
 
         $('#inform_user').html(`<h1>You are tied!</h1>`);
