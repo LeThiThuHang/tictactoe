@@ -1,79 +1,129 @@
-body {
-    background-color: #3C4245;
-}
+/* design for large screen  */
+@media (min-width : 414px) {
 
-.play_button {
-    background-color:#719192;
-    height:50%;
-    width: 40%;
-    border-radius: 15px;
-    font-family:'Finger Paint', cursive;
-    /* font-size: 2rem; */
-    font-size: 4vw;
-    border: none;
+    body {
+        background-color: #3C4245;
+    }
     
-}
-
-#start_button, #back_button, #play_again_button {
-    background-color: #719192;
-    height:80px;
-    width: 20%;
-    margin-top: 1em;
-    border-radius: 15px;
-    font-family:'Finger Paint', cursive;
-    font-size: 2rem;
-    border: none;
-}
-
-.play_button:hover, #start_button:hover, #back_button:hover, #play_again_button:hover {
-    background-color: #5F6769;
-    color:white;
-}
-
-#header {
-    display: inline-block;
-    font-family: 'Monoton', cursive;
-    text-align: center;
-    margin-bottom: 1em;
-    font-size: 50px;
-    width: 15%;
-    color: white;
-}
-
-#tic-tac-toe-board {
-    height: 80vh;
-    width: 80vw;
-}
-
-#board {
-    background-color: #719192;
+    #header {
+        display: inline-block;
+        font-family: 'Monoton', cursive;
+        text-align: center;
+        margin-bottom: 1rem;
+        margin-top:1rem;
+        font-size: 5rem;
+        width: 15%;
+        color: white;
+    }
     
+    .play_container{
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        width: 100%
+     /* justify-content-around text-center w-100 */
+    }
+    
+    .play_button {
+        background-color:#719192;
+        height:35vh;
+        width: 35vw;
+        border-radius: 15px;
+        font-family:'Finger Paint', cursive;
+        font-size: 4vw;
+        border: none;
+        
+    }
+    
+    #start_button, #back_button, #play_again_button {
+        background-color: #719192;
+        height:80px;
+        width: 20%;
+        margin-top: 1em;
+        border-radius: 15px;
+        font-family:'Finger Paint', cursive;
+        font-size: 2rem;
+        border: none;
+    }
+    
+    .play_button:hover, #start_button:hover, #back_button:hover, #play_again_button:hover {
+        background-color: #5F6769;
+        color:white;
+    }
+    
+    
+    #tic-tac-toe-board {
+        height: 80vh;
+        width: 80vw;
+    }
+    
+    #board {
+        background-color: #719192;
+        
+    }
+    
+    #inform_user {
+        font-family:'Finger Paint', cursive;
+        color:white;
+        font-size:2em;
+        margin-top:1em;
+    
+    
+    }
+    
+    /* styling for tictactoe board */
+    
+    .row {
+        margin-top:2em;
+    }
+    
+    .col {
+        height: 30vh;   
+        background-color: #719192; 
+        font-size: 100px;
+        color: #3c4245;
+        text-align: center;
+        font-family:'Finger Paint', cursive;
+    }
+    
+    .col:hover {
+        background-color: lightblue;
+    }
 }
 
-#inform_user {
-    font-family:'Finger Paint', cursive;
-    color:white;
-    font-size:2em;
-    margin-top:1em;
+/*styling for smartphone */
+@media (max-width : 414px) {
 
+    /* Styles */
 
-}
+    #header {
+        display: inline-block;
+        font-family: 'Monoton', cursive;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        margin-top: 1.5rem;
+        font-size: 3rem;
+        width: 70%;
+        color: white;
+        height:30vh;
+    }
 
-/* styling for tictactoe board */
-
-.row {
-    margin-top:2em;
-}
-
-.col {
-    height: 30vh;   
-    background-color: #719192; 
-    font-size: 100px;
-    color: #3c4245;
-    text-align: center;
-    font-family:'Finger Paint', cursive;
-}
-
-.col:hover {
-    background-color: lightblue;
+    .play_container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height:70vh
+    } 
+    
+    .play_button {
+        background-color:#719192;
+        margin-bottom: 0.5rem;
+        height:25vh;
+        width: 60vw;
+        border-radius: 15px;
+        font-family:'Finger Paint', cursive;
+        font-size: 7vw;
+        border: none;
+        
+    }
 }
