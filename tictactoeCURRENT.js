@@ -59,8 +59,8 @@ let computer = [];
 let game_end = 0;
 let result;
 let move = 10; // store result
-let player1Sign = 'X';
-let computerSign = 'O'
+let player1Sign = 'O';
+let computerSign = 'X'
 
 
 //PLAY BY YOURSELF SECTION
@@ -221,9 +221,9 @@ function play_with_computer(e) {
                     checkWinning(); // if game end = 1; stop the game
 
 
-                } else {
+                } /* else {
                     alert('Choose some place else');
-                }
+                } */
             }
 
         } else {
