@@ -1,36 +1,48 @@
-/* $("#start_button").click(function(){
 
-    $("#tic-tac-toe-board").show();
-    $("#setting_game").hide();
-})
- */
 $("#back_button").click(function () {
-
+    restart_game();
+    
     $("#tic-tac-toe-board").hide();
     $("#setting_game").show();
-    restart_game();
+
 })
 
 
 //play by yourself code
 $("#play_by_yourself").click(function () {
+    restart_game();
+
     $("#setting_game").hide();
     $("#tic-tac-toe-board").show();
+    $('#play_again_button_by_yourself').show();
+    $('#play_again_button_with_computer').hide();
+    
     body.addEventListener('click', game_play);
 })
 
-$("#play_again_button").click(function () {
+$("#play_again_button_by_yourself").click(function () {
     restart_game();
+    $('#play_again_button_with_computer').hide();
     body.addEventListener('click', game_play);
 
 })
 
 //play with computer code 
 $("#play_with_computer").click(function () {
+    restart_game();
     $("#setting_game").hide();
     $("#tic-tac-toe-board").show();
+    $('#play_again_button_with_computer').show();
+    $('#play_again_button_by_yourself').hide();  
     body.addEventListener('click', play_with_computer);
 })
+
+$("#play_again_button_with_computer").click(function () {
+    restart_game();
+    $('#play_again_button_by_yourself').hide();
+    body.addEventListener('click', play_with_computer);
+})
+
 
 
 
@@ -96,6 +108,8 @@ function restart_game() {
     game_end = 0;
     result;
     move = 10; // store result
+    body.removeEventListener('click', play_with_computer);
+    body.removeEventListener('click', game_play);
 
 }
 
@@ -158,6 +172,8 @@ function game_play(e) {
             body.removeEventListener("click", game_play); // remove function
         }
     }
+
+    console.log('running game play')
 
 }
 
@@ -230,6 +246,7 @@ function play_with_computer(e) {
             body.removeEventListener('click', play_with_computer)
         }
     }
+    console.log('running game play with computer')
 
 
 
@@ -238,21 +255,25 @@ function play_with_computer(e) {
 //check for winning both
 
 function checkWinning() {
+
     if (winning_play_with_computer(player1)) {
+        $('#inform_user').empty();
         $('#inform_user').html(`<h1>Congratulation you win babe :3 !</h1>`);
     } else if (winning_play_with_computer(computer)) {
-
+        $('#inform_user').empty();
         $('#inform_user').html(`<h1>It's ok to lose :)</h1>`);
     } else if (tie_play_with_computer(player1, computer)) {
-
+        $('#inform_user').empty();
         $('#inform_user').html(`<h1>You are tied!</h1>`);
     }
 
     if (winning_play_with_computer(player1) == true || winning_play_with_computer(computer) == true || players.length == 9) {
-        return game_end = 1;
+        game_end = 1;
     } else {
-        return game_end = 0;
+        game_end = 0;
     }
+
+    return game_end;
 }
 
 function winning_play_with_computer(array) {

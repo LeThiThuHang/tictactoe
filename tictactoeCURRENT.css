@@ -35,7 +35,7 @@
         
     }
     
-    #start_button, #back_button, #play_again_button {
+    #start_button, #back_button, #play_again_button_by_yourself, #play_again_button_with_computer {
         background-color: #719192;
         height:80px;
         width: 20%;
@@ -46,7 +46,7 @@
         border: none;
     }
     
-    .play_button:hover, #start_button:hover, #back_button:hover, #play_again_button:hover {
+    .play_button:hover, #start_button:hover, #back_button:hover, #play_again_button_by_yourself:hover, #play_again_button_with_computer:hover {
         background-color: #5F6769;
         color:white;
     }
@@ -135,7 +135,7 @@
         border: none;
     }
 
-    #back_button, #play_again_button {
+    #back_button, #play_again_button_by_yourself, #play_again_button_with_computer {
         background-color: #719192;
         height:5vh;
         width: 20vw;
@@ -146,11 +146,11 @@
         border: none;
     }
 
-    #play_again_button {
+    #play_again_button_by_yourself {
         width: 30vw;
     }
     
-    .play_button:hover, #start_button:hover, #back_button:hover, #play_again_button:hover {
+    .play_button:hover, #start_button:hover, #back_button:hover, #play_again_button:hover, #play_again_button_with_computer:hover{
         background-color: #5F6769;
         color:white;
     }
